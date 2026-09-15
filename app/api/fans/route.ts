@@ -17,7 +17,11 @@ export async function GET(){
   const counts=Object.fromEntries(poll.options.map(option=>[option,0]));
   for(const row of votes.results){try{const value=JSON.parse(row.payload)?.option;if(typeof counts[value]==='number')counts[value]++}catch{}}
   return json({poll:{question:poll.question,options:poll.options,counts,total:Object.values(counts).reduce((sum:number,value:any)=>sum+Number(value),0)},blendUrl:poll.blendUrl});
- }catch(e){console.error('Fan lab unavailable',e);return json({error:'Fan Lab is tuning up. Try again soon.'},503)}
+ }catch(e){
+  console.error('Fan lab storage unavailable; serving default public poll',e);
+  const counts=Object.fromEntries(defaultOptions.map(option=>[option,0]));
+  return json({poll:{question:defaultQuestion,options:defaultOptions,counts,total:0},blendUrl:'',degraded:true});
+ }
 }
 
 export async function POST(req:Request){
