@@ -41,7 +41,7 @@ export async function POST(req: Request) {
     try {
       const feed = await fetch(new URL("/api/feed", req.url), { cache: "no-store" });
       if (feed.ok) {
-        const data = await feed.json();
+        const data = await feed.json() as any;
         siteContext = `Current public site feed: ${JSON.stringify({ live: data.live || null, events: (data.events || []).slice(0, 12), settings: data.settings || {} })}`;
       }
     } catch {}
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     });
 
     if (!response.ok) return Response.json({ reply: fallback(latest), mode: "fallback" });
-    const data = await response.json();
+    const data = await response.json() as any;
     const reply = extractText(data) || fallback(latest);
     return Response.json({ reply, mode: "ai" }, { headers: { "Cache-Control": "no-store" } });
   } catch {
