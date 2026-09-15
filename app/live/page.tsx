@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 
 const instagram = "https://www.instagram.com/__dreezz/";
 
+type PublicFeed = { settings?: { liveStreamUrl?: string } };
+
 export default function LiveRoom() {
   const [streamUrl, setStreamUrl] = useState("");
 
   useEffect(() => {
     fetch("/api/feed", { cache: "no-store" })
-      .then((response) => response.ok ? response.json() : null)
+      .then((response) => response.ok ? response.json() as Promise<PublicFeed> : null)
       .then((data) => setStreamUrl(data?.settings?.liveStreamUrl || ""))
       .catch(() => {});
   }, []);
