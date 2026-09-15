@@ -7,8 +7,11 @@ const defaults = {
   blendUrl: "",
 };
 
+type FanData = typeof defaults;
+type FanActionResponse = { error?: string };
+
 export default function FanLab() {
-  const [data, setData] = useState(defaults);
+  const [data, setData] = useState<FanData>(defaults);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [voted, setVoted] = useState(false);
@@ -16,7 +19,7 @@ export default function FanLab() {
   async function refresh() {
     try {
       const response = await fetch("/api/fans", { cache: "no-store" });
-      if (response.ok) setData(await response.json());
+      if (response.ok) setData(await response.json() as FanData);
     } catch {}
   }
 
@@ -29,8 +32,8 @@ export default function FanLab() {
     setBusy(true); setMessage("");
     try {
       const response = await fetch("/api/fans", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result?.error || "Could not send that right now.");
+      const result = await response.json() as FanActionResponse;
+      if (!response.ok) throw new Error(result.error || "Could not send that right now.");
       form?.reset();
       setMessage(payload.type === "vote" ? "Vote locked in. You’re shaping the next frequency." : payload.type === "song" ? "Request sent to Dreez." : "Custom blend request sent. Dreez can follow up by email.");
       if (payload.type === "vote") { window.localStorage.setItem("dreez-poll-voted", "1"); setVoted(true); }
