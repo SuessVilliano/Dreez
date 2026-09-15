@@ -12,11 +12,11 @@ const starter: ChatMessage[] = [
   {
     role: "assistant",
     content:
-      "Yo — I’m the Dreez concierge. Ask me where he’s playing, how to book him, request music, commission a custom blend, find merch, or catch the next live room.",
+      "Yo — I’m the Dreezz concierge. Ask me where he’s playing, how to book him, request music, commission a custom blend, find merch, or catch the next live room.",
   },
 ];
 
-const quickPrompts = ["Where is Dreez playing?", "Fan Lab", "Custom blend", "Watch Dreez live"];
+const quickPrompts = ["Where is Dreezz playing?", "Fan Lab", "Custom blend", "Watch Dreezz live"];
 
 export default function DreezExperience() {
   const [theme, setTheme] = useState<Theme>("dark");
@@ -67,7 +67,7 @@ export default function DreezExperience() {
       const data = await response.json() as ChatResponse; if (!response.ok) throw new Error(data.error || "The signal dropped.");
       setMessages((current) => [...current, { role: "assistant", content: data.reply || "The signal dropped." }]);
     } catch {
-      setMessages((current) => [...current, { role: "assistant", content: "The AI signal is fuzzy right now, but the site still has you: Events has dates, /fans has polls + music requests + custom blends, /live is the fan room, /gallery has Dreez’s visuals, and Book Dreez handles event requests." }]);
+      setMessages((current) => [...current, { role: "assistant", content: "The AI signal is fuzzy right now, but the site still has you: Events has dates, /fans has polls + music requests + custom blends, /live is the fan room, /gallery has Dreezz’s visuals, and Book Dreezz handles event requests." }]);
     } finally { setSending(false); }
   }
 
@@ -86,14 +86,14 @@ export default function DreezExperience() {
 
   return <>
     <div className="frequency-veil" aria-hidden="true"><span /><span /><span /></div>
-    <div className="experience-dock" aria-label="Dreez experience controls">
+    <div className="experience-dock" aria-label="Dreezz experience controls">
       <a className="experience-pill" href="/fans"><Sparkles size={15} /> FAN LAB</a>
       <a className="experience-pill" href="/gallery"><Images size={15} /> GALLERY</a>
       <a className="experience-pill live-pill" href="/live"><Radio size={15} /> LIVE ROOM</a>
       <button className="experience-pill icon-pill" type="button" onClick={toggleTheme} aria-label={ariaTheme} title={ariaTheme}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button>
     </div>
-    <button className="chat-launcher" type="button" onClick={() => setChatOpen((open) => !open)} aria-label="Open Dreez concierge" aria-expanded={chatOpen}>{chatOpen ? <X size={22} /> : <><Bot size={22} /><span>ASK DREEZ AI</span></>}</button>
-    {chatOpen && <section className="dreez-chat" aria-label="Dreez AI concierge"><header><div><Sparkles size={18} /><span><b>DREEZ AI</b><small>FAN CONCIERGE</small></span></div><button type="button" onClick={() => setChatOpen(false)} aria-label="Close concierge"><X size={18} /></button></header><div className="chat-messages" aria-live="polite">{messages.map((message, index) => <p className={message.role} key={`${message.role}-${index}`}>{message.content}</p>)}{sending && <p className="assistant typing">Tuning the frequency…</p>}<div ref={chatEnd} /></div><div className="quick-prompts">{quickPrompts.map((prompt) => <button type="button" key={prompt} onClick={() => void ask(prompt)}>{prompt}</button>)}</div><form onSubmit={submitChat}><input value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Dreez…" maxLength={600} aria-label="Ask Dreez AI" /><button type="submit" disabled={sending || !input.trim()} aria-label="Send message"><Send size={17} /></button></form></section>}
-    {exitOpen && <div className="exit-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setExitOpen(false); }}><section className="exit-card" role="dialog" aria-modal="true" aria-labelledby="exit-title"><button className="exit-close" type="button" onClick={() => setExitOpen(false)} aria-label="Close"><X size={20} /></button><span className="exit-kicker">DON’T LOSE THE FREQUENCY ✳</span><h2 id="exit-title">Before you dip…</h2><p>Get first notice when Dreez drops a new date, opens the live room, or releases the next piece of merch.</p><form onSubmit={submitExit}><input name="name" placeholder="First name" maxLength={100} /><input name="email" type="email" placeholder="Email address" maxLength={254} required /><input className="exit-honey" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" /><button className="button lime full" type="submit">KEEP ME IN THE LOOP</button></form>{exitStatus && <small className="exit-status" role="status">{exitStatus}</small>}<small>Good energy only. Unsubscribe anytime.</small></section></div>}
+    <button className="chat-launcher" type="button" onClick={() => setChatOpen((open) => !open)} aria-label="Open Dreezz concierge" aria-expanded={chatOpen}>{chatOpen ? <X size={22} /> : <><Bot size={22} /><span>ASK DREEZZ AI</span></>}</button>
+    {chatOpen && <section className="dreez-chat" aria-label="Dreezz AI concierge"><header><div><Sparkles size={18} /><span><b>DREEZZ AI</b><small>FAN CONCIERGE</small></span></div><button type="button" onClick={() => setChatOpen(false)} aria-label="Close concierge"><X size={18} /></button></header><div className="chat-messages" aria-live="polite">{messages.map((message, index) => <p className={message.role} key={`${message.role}-${index}`}>{message.content}</p>)}{sending && <p className="assistant typing">Tuning the frequency…</p>}<div ref={chatEnd} /></div><div className="quick-prompts">{quickPrompts.map((prompt) => <button type="button" key={prompt} onClick={() => void ask(prompt)}>{prompt}</button>)}</div><form onSubmit={submitChat}><input value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Dreezz…" maxLength={600} aria-label="Ask Dreezz AI" /><button type="submit" disabled={sending || !input.trim()} aria-label="Send message"><Send size={17} /></button></form></section>}
+    {exitOpen && <div className="exit-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setExitOpen(false); }}><section className="exit-card" role="dialog" aria-modal="true" aria-labelledby="exit-title"><button className="exit-close" type="button" onClick={() => setExitOpen(false)} aria-label="Close"><X size={20} /></button><span className="exit-kicker">DON’T LOSE THE FREQUENCY ✳</span><h2 id="exit-title">Before you dip…</h2><p>Get first notice when Dreezz drops a new date, opens the live room, or releases the next piece of merch.</p><form onSubmit={submitExit}><input name="name" placeholder="First name" maxLength={100} /><input name="email" type="email" placeholder="Email address" maxLength={254} required /><input className="exit-honey" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" /><button className="button lime full" type="submit">KEEP ME IN THE LOOP</button></form>{exitStatus && <small className="exit-status" role="status">{exitStatus}</small>}<small>Good energy only. Unsubscribe anytime.</small></section></div>}
   </>;
 }

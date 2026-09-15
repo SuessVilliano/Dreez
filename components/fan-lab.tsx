@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 
 const defaults = {
-  poll: { question: "What should Dreez make next?", options: ["Rooftop sunset set", "Deep after-hours set", "R&B × house blend", "Fan-voted mix"], counts: {} as Record<string, number>, total: 0 },
+  poll: { question: "What should Dreezz make next?", options: ["Rooftop sunset set", "Deep after-hours set", "R&B × house blend", "Fan-voted mix"], counts: {} as Record<string, number>, total: 0 },
   blendUrl: "",
 };
 
@@ -35,7 +35,7 @@ export default function FanLab() {
       const result = await response.json() as FanActionResponse;
       if (!response.ok) throw new Error(result.error || "Could not send that right now.");
       form?.reset();
-      setMessage(payload.type === "vote" ? "Vote locked in. You’re shaping the next frequency." : payload.type === "song" ? "Request sent to Dreez." : "Custom blend request sent. Dreez can follow up by email.");
+      setMessage(payload.type === "vote" ? "Vote locked in. You’re shaping the next frequency." : payload.type === "song" ? "Request sent to Dreezz." : "Custom blend request sent. Dreezz can follow up by email.");
       if (payload.type === "vote") { window.localStorage.setItem("dreez-poll-voted", "1"); setVoted(true); }
       await refresh();
     } catch (error) { setMessage(error instanceof Error ? error.message : "Could not send that right now."); }
@@ -50,7 +50,7 @@ export default function FanLab() {
     <section className="fan-hero">
       <p className="eyebrow mint">THE FAN LAB</p>
       <h1>DON’T JUST FOLLOW.<br/><em>SHAPE THE SOUND.</em></h1>
-      <p>Vote on what Dreez makes next, request a track for a future set, or commission a custom blend built around your moment.</p>
+      <p>Vote on what Dreezz makes next, request a track for a future set, or commission a custom blend built around your moment.</p>
     </section>
 
     <section className="fan-grid">
@@ -64,7 +64,7 @@ export default function FanLab() {
       </article>
 
       <article className="fan-card request-card">
-        <span className="fan-number">02</span><p className="eyebrow orange">SEND A MUSIC REQUEST</p><h2>Put something in Dreez’s ear.</h2>
+        <span className="fan-number">02</span><p className="eyebrow orange">SEND A MUSIC REQUEST</p><h2>Put something in Dreezz’s ear.</h2>
         <p>Drop a track you think belongs in a set, a blend, or one of the live-room sessions.</p>
         <form onSubmit={(event) => formPayload(event, "song")}>
           <input name="track" required placeholder="Track / song" maxLength={160}/><input name="artist" placeholder="Artist (optional)" maxLength={160}/><textarea name="note" placeholder="Why this one? What moment does it fit?" maxLength={800}/><div className="fan-two"><input name="name" placeholder="Your name" maxLength={100}/><input name="email" type="email" placeholder="Email (optional)" maxLength={254}/></div><label className="fan-check"><input type="checkbox" name="join"/> Keep me in the inner circle</label><button className="button lime full" disabled={busy}>SEND REQUEST</button>
@@ -72,13 +72,13 @@ export default function FanLab() {
       </article>
 
       <article className="fan-card blend-card">
-        <span className="fan-number">03</span><p className="eyebrow pink">CUSTOM PRODUCT</p><h2>Your moment. Dreez’s blend.</h2>
+        <span className="fan-number">03</span><p className="eyebrow pink">CUSTOM PRODUCT</p><h2>Your moment. Dreezz’s blend.</h2>
         <p>A custom DJ blend for a birthday, wedding moment, workout, brand video, trip, party intro or anything that needs its own soundtrack.</p>
         {data.blendUrl && <a className="button lime full blend-buy" href={data.blendUrl} target="_blank" rel="noreferrer">ORDER THE CUSTOM BLEND ↗</a>}
         <form onSubmit={(event) => formPayload(event, "blend")}>
-          <div className="fan-two"><input name="name" placeholder="Your name" maxLength={100}/><input name="email" type="email" required placeholder="Email" maxLength={254}/></div><input name="occasion" placeholder="What is it for?" maxLength={160}/><textarea name="vibe" required placeholder="Describe the vibe / energy you want" maxLength={500}/><textarea name="references" placeholder="Songs, artists or references Dreez should know" maxLength={800}/><div className="fan-two"><input name="length" placeholder="Target length" maxLength={80}/><input name="budget" placeholder="Budget / range" maxLength={80}/></div><input name="due" placeholder="When do you need it?" maxLength={40}/><label className="fan-check"><input type="checkbox" name="join"/> Send me Dreez drops too</label><button className="button lime full" disabled={busy}>{data.blendUrl ? "ASK DREEZ A QUESTION" : "START MY CUSTOM BLEND"}</button>
+          <div className="fan-two"><input name="name" placeholder="Your name" maxLength={100}/><input name="email" type="email" required placeholder="Email" maxLength={254}/></div><input name="occasion" placeholder="What is it for?" maxLength={160}/><textarea name="vibe" required placeholder="Describe the vibe / energy you want" maxLength={500}/><textarea name="references" placeholder="Songs, artists or references Dreezz should know" maxLength={800}/><div className="fan-two"><input name="length" placeholder="Target length" maxLength={80}/><input name="budget" placeholder="Budget / range" maxLength={80}/></div><input name="due" placeholder="When do you need it?" maxLength={40}/><label className="fan-check"><input type="checkbox" name="join"/> Send me Dreezz drops too</label><button className="button lime full" disabled={busy}>{data.blendUrl ? "ASK DREEZZ A QUESTION" : "START MY CUSTOM BLEND"}</button>
         </form>
-        <small>Scope, turnaround, usage and pricing are confirmed before Dreez starts the work.</small>
+        <small>Scope, turnaround, usage and pricing are confirmed before Dreezz starts the work.</small>
       </article>
     </section>
     {message && <p className="fan-message" role="status">{message}</p>}
