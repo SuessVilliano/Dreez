@@ -1,6 +1,6 @@
-# DREEZ — Follow the feeling
+# DREEZZ — Follow the feeling
 
-A mobile-first house-music website for Tampa DJ Dreez. Built with React, Vinext and Cloudflare Workers / D1. The uploaded rooftop photos anchor a sunset, lime and pink identity.
+A mobile-first house-music website for Tampa DJ Dreezz. Built with React, Vinext and Cloudflare Workers / D1. The uploaded rooftop photos anchor a sunset, lime and pink identity.
 
 ## Included
 
@@ -14,7 +14,7 @@ A mobile-first house-music website for Tampa DJ Dreez. Built with React, Vinext 
 
 ## Launch configuration
 
-1. Set hosted `ADMIN_EMAILS` to the comma-separated ChatGPT sign-in emails of Dreez and trusted managers. Backstage and all administrative APIs deny access unless the authenticated email is allowed. Never trust visitors merely because they can sign in.
+1. Set hosted `ADMIN_EMAILS` to the comma-separated ChatGPT sign-in emails of Dreezz and trusted managers. Backstage and all administrative APIs deny access unless the authenticated email is allowed. Never trust visitors merely because they can sign in.
 2. Open `/backstage`, add actual event dates, venue addresses and map coordinates. Press **Go live here** during the event; the marker expires at the scheduled end. End check-in early when necessary.
 3. Add official HTTPS store and support payment links in Backstage → Store. Product fulfillment, taxes, payment accounts and prices belong to the connected store.
 4. Export subscribers to the chosen email platform. This version stores subscriptions and inquiries; it does not send automatic campaigns or booking emails. Honor unsubscribe requests before sending exported-list campaigns.
