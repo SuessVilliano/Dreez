@@ -2,19 +2,8 @@
   "version": "7",
   "dialect": "sqlite",
   "entries": [
-    {
-      "idx": 0,
-      "version": "6",
-      "when": 1789472527304,
-      "tag": "0000_brainy_yellowjacket",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1789475200000,
-      "tag": "0001_fan_actions",
-      "breakpoints": true
-    }
+    {"idx":0,"version":"6","when":1789472527304,"tag":"0000_brainy_yellowjacket","breakpoints":true},
+    {"idx":1,"version":"6","when":1789475200000,"tag":"0001_fan_actions","breakpoints":true},
+    {"idx":2,"version":"6","when":1789477200000,"tag":"0002_qr_hits","breakpoints":true}
   ]
 }

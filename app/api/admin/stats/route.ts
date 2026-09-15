@@ -1,0 +1,2 @@
+import {admin,db,json} from '@/lib/server';
+export async function GET(){if(!await admin())return json({error:'Backstage access is restricted.'},403);try{const [total,rows]=await Promise.all([db().prepare('SELECT COUNT(*) as count FROM qr_hits').first<{count:number}>(),db().prepare('SELECT campaign,venue,event,COUNT(*) as scans,MAX(created) as lastScan FROM qr_hits GROUP BY campaign,venue,event ORDER BY scans DESC,lastScan DESC LIMIT 100').all()]);return json({totalScans:Number(total?.count||0),campaigns:rows.results})}catch{return json({totalScans:0,campaigns:[]})}}

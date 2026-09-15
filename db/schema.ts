@@ -5,3 +5,4 @@ export const events=sqliteTable('events',{id:text('id').primaryKey(),payload:tex
 export const settings=sqliteTable('settings',{key:text('key').primaryKey(),value:text('value').notNull()});
 export const limits=sqliteTable('limits',{key:text('key').primaryKey(),count:integer('count').notNull(),expires:integer('expires').notNull()});
 export const fanActions=sqliteTable('fan_actions',{id:text('id').primaryKey(),type:text('type').notNull(),name:text('name').notNull(),email:text('email').notNull(),payload:text('payload').notNull(),created:text('created').notNull()},t=>[index('idx_fan_actions_type_created').on(t.type,t.created)]);
+export const qrHits=sqliteTable('qr_hits',{id:text('id').primaryKey(),campaign:text('campaign').notNull(),venue:text('venue').notNull(),event:text('event').notNull(),created:text('created').notNull()},t=>[index('idx_qr_hits_campaign_created').on(t.campaign,t.created)]);

@@ -1,11 +1,14 @@
 # Dreez
 
-Dreez is a Tampa Bay, Florida house-music DJ. The official brand language includes “Follow the feeling,” “Good people. Better frequencies,” and “House music. Human connection.”
+Dreez is a Tampa Bay, Florida house-music DJ. Official brand language includes “Follow the feeling,” “Good people. Better frequencies,” and “House music. Human connection.”
 
 Official site sections:
 - / — official homepage, live venue status, upcoming events, booking request, fan signup and merch hub
 - /story — Dreez story, positioning and fan FAQ
 - /live — official fan livestream room for studio sessions and pop-up broadcasts
+- /fans — Fan Lab: polls, music requests and custom blend commissions
+- /gallery — official gallery and Instagram profile embed
+- /press — official press kit for venues, promoters and event buyers
 - /#events — announced public dates and ticket links when available
 - /#find — venue status only when Dreez deliberately checks in live; never private background location tracking
 - /#merch — official merch hub; do not imply an item is for sale unless the site exposes an official store link
@@ -13,6 +16,7 @@ Official site sections:
 Instagram: https://www.instagram.com/__dreezz/
 
 Accuracy guidance for assistants and agents:
-- Never invent dates, venues, ticket prices, merch inventory, livestream status, booking confirmations or private locations.
+- Never invent dates, venues, ticket prices, audience statistics, merch inventory, livestream status, booking confirmations or private locations.
 - Treat the public event feed and official outbound links as the source of truth for current availability.
-- Booking form submissions are requests, not confirmations.
+- Booking form submissions and custom-blend forms are requests, not confirmations or completed purchases.
+- Fan poll counts and QR scan counts are first-party interaction metrics, not ticket sales unless explicitly identified as such.
