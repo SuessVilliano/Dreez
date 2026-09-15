@@ -132,6 +132,7 @@ export default function DreezExperience() {
       <div className="frequency-veil" aria-hidden="true"><span /><span /><span /></div>
 
       <div className="experience-dock" aria-label="Dreez experience controls">
+        <a className="experience-pill" href="/story"><Sparkles size={15} /> STORY</a>
         <a className="experience-pill live-pill" href="/live"><Radio size={15} /> LIVE ROOM</a>
         <button className="experience-pill icon-pill" type="button" onClick={toggleTheme} aria-label={ariaTheme} title={ariaTheme}>
           {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
