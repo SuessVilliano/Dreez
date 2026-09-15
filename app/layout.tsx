@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import DreezExperience from "@/components/dreez-experience";
 import "./globals.css";
 import "./finish.css";
+import "./fans.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dreez.vercel.app";
 
