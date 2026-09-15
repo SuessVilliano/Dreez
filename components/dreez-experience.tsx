@@ -5,6 +5,8 @@ import { Bot, Images, Moon, Radio, Send, Sparkles, Sun, X } from "lucide-react";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 type Theme = "dark" | "light";
+type ChatResponse = { reply?: string; error?: string };
+type SubscribeResponse = { error?: string };
 
 const starter: ChatMessage[] = [
   {
@@ -62,8 +64,8 @@ export default function DreezExperience() {
     setMessages(nextMessages); setInput(""); setSending(true);
     try {
       const response = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: nextMessages.slice(-8) }) });
-      const data = await response.json(); if (!response.ok) throw new Error(data?.error || "The signal dropped.");
-      setMessages((current) => [...current, { role: "assistant", content: data.reply }]);
+      const data = await response.json() as ChatResponse; if (!response.ok) throw new Error(data.error || "The signal dropped.");
+      setMessages((current) => [...current, { role: "assistant", content: data.reply || "The signal dropped." }]);
     } catch {
       setMessages((current) => [...current, { role: "assistant", content: "The AI signal is fuzzy right now, but the site still has you: Events has dates, /fans has polls + music requests + custom blends, /live is the fan room, /gallery has Dreez’s visuals, and Book Dreez handles event requests." }]);
     } finally { setSending(false); }
@@ -75,7 +77,7 @@ export default function DreezExperience() {
     event.preventDefault(); const form = event.currentTarget; const payload = Object.fromEntries(new FormData(form)); setExitStatus("Tuning you in…");
     try {
       const response = await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...payload, source: "exit-intent" }) });
-      const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data?.error || "Could not join right now.");
+      const data = await response.json().catch(() => ({})) as SubscribeResponse; if (!response.ok) throw new Error(data.error || "Could not join right now.");
       setExitStatus("You’re in. Next frequency drop goes to your inbox."); form.reset();
     } catch (error) { setExitStatus(error instanceof Error ? error.message : "Could not join right now."); }
   }

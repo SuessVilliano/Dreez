@@ -8,7 +8,7 @@ const cloudflareWorkersShim = path.join(root, "lib/vercel-cloudflare-workers.ts"
 const nextConfig: NextConfig = {
   turbopack: {
     resolveAlias: {
-      "cloudflare:workers": cloudflareWorkersShim,
+      "cloudflare:workers": "./lib/vercel-cloudflare-workers.ts",
     },
   },
   webpack(config) {
