@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import { Bot, Moon, Radio, Send, Sparkles, Sun, X } from "lucide-react";
+import { Bot, Images, Moon, Radio, Send, Sparkles, Sun, X } from "lucide-react";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 type Theme = "dark" | "light";
@@ -65,7 +65,7 @@ export default function DreezExperience() {
       const data = await response.json(); if (!response.ok) throw new Error(data?.error || "The signal dropped.");
       setMessages((current) => [...current, { role: "assistant", content: data.reply }]);
     } catch {
-      setMessages((current) => [...current, { role: "assistant", content: "The AI signal is fuzzy right now, but the site still has you: Events has dates, /fans has polls + music requests + custom blends, /live is the fan room, and Book Dreez handles event requests." }]);
+      setMessages((current) => [...current, { role: "assistant", content: "The AI signal is fuzzy right now, but the site still has you: Events has dates, /fans has polls + music requests + custom blends, /live is the fan room, /gallery has Dreez’s visuals, and Book Dreez handles event requests." }]);
     } finally { setSending(false); }
   }
 
@@ -86,7 +86,7 @@ export default function DreezExperience() {
     <div className="frequency-veil" aria-hidden="true"><span /><span /><span /></div>
     <div className="experience-dock" aria-label="Dreez experience controls">
       <a className="experience-pill" href="/fans"><Sparkles size={15} /> FAN LAB</a>
-      <a className="experience-pill" href="/story">STORY</a>
+      <a className="experience-pill" href="/gallery"><Images size={15} /> GALLERY</a>
       <a className="experience-pill live-pill" href="/live"><Radio size={15} /> LIVE ROOM</a>
       <button className="experience-pill icon-pill" type="button" onClick={toggleTheme} aria-label={ariaTheme} title={ariaTheme}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button>
     </div>
