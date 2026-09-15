@@ -1,0 +1,10 @@
+import {env} from 'cloudflare:workers';
+import {getChatGPTUser} from '@/app/chatgpt-auth';
+export function db(){if(!env.DB)throw Error('Storage unavailable');return env.DB}
+export function json(data:unknown,status=200){return Response.json(data,{status,headers:{'Cache-Control':'no-store'}})}
+export function clean(v:unknown,max=200){return typeof v==='string'?v.trim().slice(0,max):''}
+export function email(v:unknown){const s=clean(v,254).toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s))throw Error('Enter a valid email address.');return s}
+export async function body(req:Request){if(req.headers.get('Origin')&&new URL(req.headers.get('Origin')!).host!==new URL(req.url).host)throw Error('Request origin rejected.');if(!req.headers.get('Content-Type')?.includes('application/json'))throw Error('JSON required.');const raw=await req.text();if(raw.length>12000)throw Error('Request too large.');return JSON.parse(raw)}
+export async function admin(){const u=await getChatGPTUser();const allowed=((env as any).ADMIN_EMAILS||'').split(',').map((e:string)=>e.trim().toLowerCase()).filter(Boolean);return !!u&&allowed.includes(u.email.toLowerCase())}
+export async function rate(req:Request,action:string){const ip=req.headers.get('cf-connecting-ip')||req.headers.get('x-real-ip')||'anonymous';const hour=Math.floor(Date.now()/3600000);const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ip+hour));const key=action+':'+Array.from(new Uint8Array(hash)).map(b=>b.toString(16).padStart(2,'0')).join('');const result=await db().prepare('INSERT INTO limits (key,count,expires) VALUES (?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count').bind(key,hour+2).first<{count:number}>();await db().prepare('DELETE FROM limits WHERE expires < ?').bind(hour).run();if(result&&result.count>20)throw Error('Too many requests. Please try again later.');}
+export function safeUrl(v:unknown){const s=clean(v,1000);if(!s)return '';const u=new URL(s);if(u.protocol!=='https:')throw Error('Links must start with https://');return u.href}
